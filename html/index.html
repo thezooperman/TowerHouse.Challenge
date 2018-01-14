@@ -6,7 +6,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers.js"></script>
     <script src="scripts/service.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <style>        
             table, th, td {
                 border: 1px solid black;
@@ -18,13 +18,13 @@
     <div ng-controller="IndexController">
         <table>
             <thead>
-                <tr>Currency</tr>
-                <tr>Last Price</tr>
-                <tr>Date</tr>
+                <th>Currency</th>
+                <th>Last Price</th>
+                <th>Date</th>
             </thead>
             <tbody>
                 <tr ng-repeat="row in currencies">
-                    <td><a ng-click="open(row.currency)" href="javascript:void(0);">{{row.currency}}</a></td>
+                    <td><a ng-href="javascript:void(0);" ng-click="open(row.currency)">{{row.currency}}</a></td>
                     <td>{{row.priceUSD}}</td>
                     <td>{{row.date}}</td>
                 </tr>
