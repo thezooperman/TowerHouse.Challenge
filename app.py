@@ -41,10 +41,12 @@ def get_history(currency):
         elif currency == 'Litecoin':
             _currency = PROJECT_TABLE_LITECOIN
 
-    _tab = r.db(PROJECT_DB).table(_currency).order_by(index = r.desc('date'))
+    _tab = r.db(PROJECT_DB).table(_currency).order_by(index=r.desc('date'))
     query = _tab.run(db_connection)
     if query is not None:
-        print('query returned %d rows' % len(query.items))
+        print('query returned %d rows for currency - %s' % (len(query.items), currency))
+    else:
+        print('query returned no rows for currency - %s', currency)
     return_val = [q for q in query]
     return jsonify(return_val)
 

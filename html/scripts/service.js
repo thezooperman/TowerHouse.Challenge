@@ -1,15 +1,18 @@
 angular.module('myApp.Services', [])
 //UserService
-.factory('UserServices', function ($http) {
-    var _val = '';
-    var services = {};
+    .factory('UserServices', function () {
+        var data = {};
 
-    services.setValue = function (value) {
-        this._val = value;
-    };
+        var setValue = function(currency) {
+            data.Value = currency;
+        }
 
-    services.getValue = function () {
-        return this._val;
-    };
-    return services;
-});
+        var getValue = function() {
+            return data.Value;
+        }
+
+        return {
+            setValue: setValue,
+            getValue: getValue
+        }
+    });
