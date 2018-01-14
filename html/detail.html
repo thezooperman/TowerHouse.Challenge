@@ -20,14 +20,24 @@
         <h1>{{legend}}</h1>
         <table>
             <thead>
+                <th>Date</th>
                 <th>Price in USD</th>
                 <th>Transactional Volume</th>
             </thead>
             <tbody>
                 <tr>
-
+                    <td>
+                        {{refreshDate}}
+                    </td>
+                    <td>
+                        {{refreshPrice}}
+                    </td>
+                    <td>
+                        {{refreshVolume}}
+                    </td>
                 </tr>
                 <tr ng-repeat="row in historicalData">
+                    <td>{{row.date}}</td>
                     <td>
                         {{row.priceUSD}}
                     </td>
