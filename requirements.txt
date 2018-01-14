@@ -1,0 +1,3 @@
+rethinkdb
+flask
+flask-cors

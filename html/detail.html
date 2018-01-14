@@ -1,0 +1,41 @@
+<html ng-app="myApp">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <script src="scripts/service.js"></script>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="DetailController">
+        <table>
+            <thead>
+                <tr>Price in USD</tr>
+                <tr>Transactional Volume</tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+                <tr ng-repeat="row in historicalData">
+                    <td>
+                        {{row.priceUSD}}
+                    </td>
+                    <td>
+                        {{row.txVolumeUSD}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
