@@ -11,5 +11,8 @@ rethinkdb = "*"
 flask = "*"
 flask-cors = "*"
 requests = "*"
+asyncio = "*"
+flask-cache = "*"
+
 
 [dev-packages]
