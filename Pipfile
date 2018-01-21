@@ -8,10 +8,9 @@ name = "pypi"
 [packages]
 
 rethinkdb = "*"
-flask = "*"
-flask-cors = "*"
+Flask = "*"
+Flask-Cors = "*"
 requests = "*"
-asyncio = "*"
 flask-cache = "*"
 
 
