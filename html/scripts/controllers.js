@@ -25,52 +25,42 @@ angular.module('myApp.Controllers', [])
             $scope.refreshPrice = '--';//$scope.historicalData[0].priceUSD;
             $scope.refreshVolume = '--';//$scope.historicalData[0].txVolumeUSD;
         });
-        // switch (_currency) {
-        //     case 'DogeCoin':
-        //         _currency = 'doge'
-        //         break;
-        //     case 'Ethereum':
-        //         _currency = 'eth'
-        //         break;
-        //     case 'Litecoin':
-        //         _currency = 'ltc'
-        //         break;
-        //     default:
-        //         _currency = 'btc';
-        // }
+
+        switch (_currency) {
+            case 'DogeCoin':
+                _currency = 'doge'
+                break;
+            case 'Ethereum':
+                _currency = 'eth'
+                break;
+            case 'Litecoin':
+                _currency = 'ltc'
+                break;
+            default:
+                _currency = 'btc';
+        }
         var url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_INTRADAY&symbol=' + _currency + '&market=USD&apikey=SQ53PLSDSYK58K0A';
 
-        // var interval = $interval(function () {
-        //     $http.get(url)
-        //         .then(function (response) {
-        //             var newArr = [];
-        //             angular.forEach(response.data, (msg)=>
-        //             {
-        //                 // if (msg.hasOwnProperty('Time Series (Digital Currency Intraday)'))
-        //                 // {
-        //                     // console.log(msg);
-        //                     // console.log(response.data[msg]);
-        //                     if (msg !== undefined || msg !== null) {
-        //                         newArr.push(msg);
-        //                         // angular.forEach(msg, (text)=>{
-        //                         //     console.log(text);
-        //                         // });
-        //                     }
-        //                 // }
-        //             });
-        //             console.log(newArr);
-        //             $scope.refreshDate = response.data.date;
-        //             $scope.refreshPrice = response.data.price;
-        //             $scope.refreshVolume = response.data.volume;
-        //         });
-        // }, 5000);
-
+        //Route the call from client to external REST API
         var interval = $interval(function () {
-            $http.get('http://localhost:9090/api/getprice/' + _currency)
+            $http.get(url)
                 .then(function (response) {
-                    $scope.refreshDate = response.data.date;
-                    $scope.refreshPrice = response.data.price;
-                    $scope.refreshVolume = response.data.volume;
+                    var finalData = response.data['Time Series (Digital Currency Intraday)'];
+                    var lastKey = Object.keys(finalData)[0];
+                    var lastVal = finalData[lastKey];
+                    $scope.refreshDate = new Date(lastKey).toISOString().slice(0, 10);
+                    $scope.refreshPrice = Number.parseFloat(Object.values(lastVal)[0]).toFixed(2);
+                    $scope.refreshVolume = Number.parseFloat(Object.values(lastVal)[3]).toFixed(2);
                 });
         }, 2000);
+
+        //Route the call to REST API Server - No need due to server issue to handle frequent requests
+        // var interval = $interval(function () {
+        //     $http.get('http://localhost:9090/api/getprice/' + _currency)
+        //         .then(function (response) {
+        //             $scope.refreshDate = new Date(response.data.date).toISOString().slice(0, 10);
+        //             $scope.refreshPrice = Number.parseFloat(response.data.price).toFixed(2);
+        //             $scope.refreshVolume = Number.parseFloat(response.data.volume).toFixed(2);
+        //         });
+        // }, 2000);
     });
