@@ -50,7 +50,7 @@ angular.module('myApp.Controllers', [])
                     var lastVal = finalData[lastKey];
                     $scope.refreshDate = new Date(lastKey).toISOString().slice(0, 10);
                     $scope.refreshPrice = Number.parseFloat(Object.values(lastVal)[0]).toFixed(2);
-                    $scope.refreshVolume = Number.parseFloat(Object.values(lastVal)[3]).toFixed(2);
+                    $scope.refreshVolume = Number.parseFloat(Object.values(lastVal)[2]).toFixed(2);
                 });
         }, 2000);
 
